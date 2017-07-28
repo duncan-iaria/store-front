@@ -1,0 +1,23 @@
+{
+  "name": "store-front",
+  "version": "0.0.1",
+  "description": "Practice with MySQL and node.js",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/duncan-iaria/store-front.git"
+  },
+  "author": "duncan iaria",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/duncan-iaria/store-front/issues"
+  },
+  "homepage": "https://github.com/duncan-iaria/store-front#readme",
+  "dependencies": {
+    "dotenv": "^4.0.0",
+    "mysql": "^2.14.0"
+  }
+}
