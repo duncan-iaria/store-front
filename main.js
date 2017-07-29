@@ -1,102 +1,71 @@
 require( 'dotenv' ).config( { path: '.env' } );
-const mysql = require( 'mysql' );
+const express = require( 'express' );
+const routes = require( './routes' );
+const connection = require( './connection' );
 const env = process.env;
 
-const connection = mysql.createConnection
-(
-    {
-        host: 'localhost',
-        port: 3306,
+const app = express();
+const port = env.PORT || 3000;
 
-        user: env.USER,
-        password: env.PASSWORD,
-        database: 'music_db'
-    }
-);
+app.listen( port );
 
-//=========================
-//  CONNECTION LOGIC
-//=========================
-connection.connect( onConnectionComplete );
+app.use( '/', routes );
 
-function onConnectionComplete( tError )
-{
-    if( tError )
-    {
-        console.log( 'there was an error when connecting: ' + tError );
-    }
-    else
-    {
-        console.log( 'connected as id ' + connection.threadId );
-        //selectAll();
+console.log( 'RESTful API server started on: ' + port );
 
-        // selectArtist( "Broken Social Scene" );
 
-        let tempSong = 
-        {
-            artist: 'Broken Social Scene',
-            album: 'You Forgot It In the People',
-            title: 'Cause = Time',
-            genre: 'Indie'
-        }
-        createStuff( tempSong );
+// //=========================
+// // QUERYS
+// //=========================
+// function selectAll()
+// {
+//     connection.query( "SELECT * FROM playlist_best", onQueryComplete );
+// }
 
-        selectAll();
-    }
-}
+// function selectArtist( tArtist )
+// {
+//     connection.query( "SELECT * FROM playlist_best WHERE artist=?", [tArtist], onQueryComplete );
+// }
 
-//=========================
-// QUERYS
-//=========================
-function selectAll()
-{
-    connection.query( "SELECT * FROM playlist_best", onQueryComplete );
-}
+// function onQueryComplete( tError, tResponse )
+// {
+//     if( tResponse.length > 1 )
+//     {
+//         for( let i = 0; i < tResponse.length; ++i )
+//         {
+//             console.log( )
+//         }
+//     }
+//     console.log( tResponse );
+// }
 
-function selectArtist( tArtist )
-{
-    connection.query( "SELECT * FROM playlist_best WHERE artist=?", [tArtist], onQueryComplete );
-}
+// //=========================
+// // CRUD
+// //=========================
+// function createStuff( tSong )
+// {
+//     connection.query( "INSERT INTO playlist_best SET ?", tSong, onCreateComplete );
 
-function onQueryComplete( tError, tResponse )
-{
-    if( tResponse.length > 1 )
-    {
-        for( let i = 0; i < tResponse.length; ++i )
-        {
-            console.log( )
-        }
-    }
-    console.log( tResponse );
-}
+//     function onCreateComplete( tError, tResponse )
+//     {
+//         if( tError )
+//         {
+//             console.log( "error when creating: " + tError );
+//         }
+//         else
+//         {
+//             console.log( tResponse.affectedRow );
+//         }
+//     }
+// }
 
-//=========================
-// CRUD
-//=========================
-function createStuff( tSong )
-{
-    connection.query( "INSERT INTO playlist_best SET ?", tSong, onCreateComplete );
-
-    function onCreateComplete( tError, tResponse )
-    {
-        if( tError )
-        {
-            console.log( "error when creating: " + tError );
-        }
-        else
-        {
-            console.log( tResponse.affectedRow );
-        }
-    }
-}
-
-function deleteStuff( )
-{
+// function deleteStuff( )
+// {
     
-}
+// }
 
-function updateStuff()
-{
+// function updateStuff()
+// {
 
-}
+// }
 
