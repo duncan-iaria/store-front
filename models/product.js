@@ -1,3 +1,5 @@
+module.exports = Product;
+
 //base contructor for a product in our store
 function Product( tName, tDepartment, tPrice, tQuantity )
 {
