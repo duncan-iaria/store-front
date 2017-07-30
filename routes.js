@@ -7,7 +7,9 @@ router.get( '/balls', onBallsComplete );
 function onRouteComplete( tRequest, tResponse )
 {
     console.log( "hello" );
-    tResponse.send( "it works!" );
+    console.log( tRequest.query );
+    //tResponse.send( "it works!" );
+    tResponse.json( tRequest.query );
 }
 
 function onBallsComplete( tRequest, tResponse )
