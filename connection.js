@@ -1,4 +1,4 @@
-//handles connecting to the MySQL database
+//CONNECTION TO MySQL DB
 require( 'dotenv' ).config( { path: '.env' } );
 const mysql = require( 'mysql' );
 const env = process.env;
@@ -15,7 +15,6 @@ const connection = mysql.createConnection
     }
 );
 
-
 //=========================
 //  CONNECTION LOGIC
 //=========================
@@ -29,6 +28,11 @@ function onConnectionComplete( tError )
     }
     else
     {
-        console.log( "MySQL connection complete" ); 
+        console.log( "MySQL connection complete" );
     }
 }
+
+//=========================
+//  EXPORT
+//=========================
+module.exports = connection;
