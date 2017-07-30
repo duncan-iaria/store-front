@@ -16,6 +16,7 @@ module.exports =
         }   
     },
 
+    //PRODUCTS WITH QUANTITY BELOW 5
     getLowProducts: function( tResponse )
     {
         connection.query( "SELECT * FROM products WHERE quantity < 5", onLowQueryComplete );
@@ -26,6 +27,7 @@ module.exports =
         }   
     },
 
+    //ADD A NEW PRODUCT
     postNewProduct: function( tProduct, tResponse )
     {
         connection.query( "INSERT INTO products SET ?", tProduct, onQueryComplete );
@@ -43,6 +45,7 @@ module.exports =
         }
     },
 
+    //UPDATE THE PRODUCTS QUANTIY (restocked or purchased)
     updateProductQuantity: function( tProductID, tAmt, tResponse )
     {
         connection.query( "UPDATE products SET ? WHERE ?", [ { quantity: tAmt },{ id: tProductID } ], onUpdateComplete );
@@ -60,6 +63,7 @@ module.exports =
         }
     },
 
+    //GET INFO ABOUT A PRODUCT BY ID (returns all fields)
     getProductByID: function( tProductID, tResponse )
     {
         connection.query( "SELECT * FROM products WHERE ?", { id: tProductID }, onGetProductComplete );
@@ -77,3 +81,8 @@ module.exports =
         }
     }
 }
+
+// function selectArtist( tArtist )
+// {
+//     connection.query( "SELECT * FROM playlist_best WHERE artist=?", [tArtist], onQueryComplete );
+// }
