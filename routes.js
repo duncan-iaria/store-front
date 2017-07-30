@@ -41,13 +41,20 @@ function onRouteComplete( tRequest, tResponse )
 //=========================
 // PRODUCTS ROUTES
 //=========================
-router.route( '/api/products' ).get( onGetProduct );
+router.route( '/api/products' ).get( onGetProducts );
+router.route( '/api/products/low' ).get( onGetLowProducts );
 router.route( '/api/products' ).post( onPostProduct );
 
-function onGetProduct( tRequest, tResponse )
+function onGetProducts( tRequest, tResponse )
 {
     console.log( 'get products' );
-    query.queryAllProducts( tResponse );
+    query.getAllProducts( tResponse );
+}
+
+function onGetLowProducts( tRequest, tResponse )
+{
+    console.log( 'get low products' );
+    query.getLowProducts( tResponse );
 }
 
 function onPostProduct( tRequest, tResponse )
@@ -66,12 +73,14 @@ router.route( '/api/products/:productID' ).put( onUpdateProductByID );
 
 function onGetProductByID( tRequest, tResponse )
 {
-    console.log( 'get indie' );
+    console.log( 'get product by id ' + tRequest.params.productID );
+    query.getProductByID( tRequest.params.productID, tResponse );
 }
 
 function onUpdateProductByID( tRequest, tResponse )
 {
-    console.log( tRequest.params.productID );
+    console.log( 'update product by id ' + tRequest.params.productID );
+    query.updateProductQuantity( tRequest.params.productID, tRequest.query.amount, tResponse )
 }
 
 //=========================
