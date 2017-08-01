@@ -1,5 +1,6 @@
 //get jquery the webpack way
 import $ from 'jquery';
+import { ProductList } from '../../../models/product-list.js';
 
 export const controller =
 {
@@ -24,26 +25,7 @@ function renderAllProducts()
     var requestParams = { 'type': 'GET', 'url' : url, 'dataType' : 'json' };
 
     //make the api call to zipcodeapi.com
-    $.ajax( requestParams ).done( render );
-
-    function render( tData )
-    {
-        $( '#products' ).empty();
-
-        for( let i = 0; i < tData.length; i++ )
-        {
-            //clear current table
-            $( '#products' ).append
-            ( 
-                "<div class='product-container' data-id=" + tData[i].id + ">" +
-                    "<div class='product-name'>" + tData[i].name + "</div>" +
-                    "<div class='product-price'>" + tData[i].price + "</div>" +
-                    "<button class='remove'>-</button>" +
-                    "<button class='add'>+</button>" +
-                "</div>"
-            );
-        }
-    }
+    $.ajax( requestParams ).done( buildProductList );
 }
 
 function getLowProducts()
@@ -55,24 +37,11 @@ function getLowProducts()
     var requestParams = { 'type': 'GET', 'url' : url, 'dataType' : 'json' };
 
     //make the api call to zipcodeapi.com
-    $.ajax( requestParams ).done( render );
+    $.ajax( requestParams ).done( buildProductList );
+}
 
-    function render( tData )
-    {
-        //clear current table
-        $( '#products' ).empty();
-
-        for( let i = 0; i < tData.length; i++ )
-        {
-            $( '#products' ).append
-            ( 
-                "<div class='product-container' data-id=" + tData[i].id + ">" +
-                    "<div class='product-name'>" + tData[i].name + "</div>" +
-                    "<div class='product-price'>" + tData[i].price + "</div>" +
-                    "<button class='remove'>-</button>" +
-                    "<button class='add'>+</button>" +
-                "</div>"
-            );
-        }
-    }
+function buildProductList( tData )
+{
+    const tempView = $( '#products' );
+    const tempProductList = new ProductList( tData, tempView );
 }
