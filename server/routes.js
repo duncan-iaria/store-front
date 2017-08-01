@@ -59,6 +59,7 @@ function onGetLowProducts( tRequest, tResponse )
 function onPostProduct( tRequest, tResponse )
 {
     console.log( 'post product' );
+    console.log( tRequest.query );
     let tempProduct = new Product( tRequest.query.name, tRequest.query.department, tRequest.query.price, tRequest.query.quantity );
 
     query.postNewProduct( tempProduct, tResponse );

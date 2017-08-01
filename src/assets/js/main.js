@@ -9,3 +9,4 @@ controller.getAllProducts();
 
 //attatch low product listener
 controller.lowProductsButton();
+controller.addProductButton();
