@@ -31,6 +31,11 @@ export const controller =
     removeProductFromOrderButton: function()
     {
         $( '#orders' ).on( 'click', ".product-container > .remove", removeProductFromOrder );
+    },
+
+    addPurchaseButton: function()
+    {
+        $( '#purchase-products' ).on( 'click', purchaseProducts );
     }
 }
 
@@ -55,7 +60,7 @@ function getLowProducts()
     //build request parameters
     var requestParams = { 'type': 'GET', 'url' : url, 'dataType' : 'json' };
 
-    //make the api call to zipcodeapi.com
+    //make the api call
     $.ajax( requestParams ).done( buildProductList );
 }
 
@@ -69,7 +74,6 @@ function buildProductList( tData )
 
 function addProduct()
 {
-    console.log( "hello time to make new product" );
     const tName = $( '#new-product-name' ).val();
     const tDeptartment = $( '#new-product-department' ).val();
     const tPrice = $( '#new-product-price' ).val();
@@ -81,7 +85,7 @@ function addProduct()
     //build request parameters
     var requestParams = { 'type': 'POST', 'url' : url };
 
-    //make the api call to zipcodeapi.com
+    //make the api call
     $.ajax( requestParams ).done( addProductComplete );
 }
 
@@ -104,7 +108,8 @@ function addProductToOrder( tEvent )
         controller.currentOrderList = new ProductList( [], tempView, tempOrderView );
     }
 
-    let tempProduct = controller.productList.products[tempID - 1];
+    //make a copy of the object
+    let tempProduct = $.extend( {}, controller.productList.products[tempID - 1] );
 
     let tempIsRepeat = false;
 
@@ -158,4 +163,54 @@ function removeProductFromOrder()
     {
         controller.currentOrderList.renderListAsOrderList();
     }
+}
+
+function purchaseProducts()
+{
+    //if there are things to buy
+    if( controller.currentOrderList.products.length > 0 )
+    {
+        const tempOrderProducts = controller.currentOrderList.products;
+        const tempProductList = controller.productList.products;
+
+        for( let i = tempOrderProducts.length - 1;  i >= 0; --i )
+        {
+            for( let j = tempProductList.length - 1; j >= 0; --j )
+            {
+                if( tempOrderProducts[i].id == tempProductList[j].id )
+                {
+                    let tempRemaining = tempProductList[j].quantity - tempOrderProducts[i].quantity;
+                    if( tempRemaining > 0 )
+                    {
+                        console.log( 'make the purchase' );
+                        removeProductFromInventory( tempOrderProducts[i], tempRemaining );
+                    }
+                    else
+                    {
+                        console.log( 'could not purchase' + tempOrderProducts[i].name + 'as there is insufficient supply' );
+                    }
+                }
+            }
+        }
+    }
+}
+
+function removeProductFromInventory( tProduct, tQuantity )
+{    
+    //build the request URL
+    var url = 'http://localhost:3006/api/products/' + tProduct.id + "?amount=" + tQuantity;
+    
+    //build request parameters
+    var requestParams = { 'type': 'PUT', 'url' : url, 'dataType' : 'json' };
+
+    //make the api call
+    $.ajax( requestParams ).done( updateProductComplete );
+
+    //remove the product from the order page
+    setTimeout( function(){ controller.currentOrderList.removeOrderProduct( tProduct ) }, 100 );
+}
+
+function updateProductComplete()
+{
+    console.log( 'we did it?' );
 }
