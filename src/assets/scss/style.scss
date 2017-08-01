@@ -1,0 +1,148 @@
+$nearBlack: #333;
+$middleGrey: #4a4a4a;
+$lightGrey: #575757;
+$nearWhite: #e4e4e4;
+
+$okayBlue: #008aff;
+$badRed: #ff4e00;
+
+$standardPadding: 12px;
+
+@font-face 
+{
+    font-family: 'SigmarOne';
+    src:  url('../fonts/SigmarOne-Regular.ttf') format('ttf');
+    font-weight: 600;
+    font-style: normal;
+}
+
+html
+{
+	position: relative;
+    min-height: 100%;
+    line-height: 1.5em;
+}
+
+body
+{
+    background-color: $nearBlack;
+    color: #fff;
+    font-size: 16px;
+}
+
+h1, h2, h3
+{
+    font-weight: bold;
+}
+
+h1
+{
+    font-family: 'SigmarOne';
+    font-size: 2em;
+}
+
+h2
+{
+    font-size: 1.66em;
+}
+
+h3
+{
+    font-size: 1.33em;
+}
+
+button
+{
+    height: 30px;
+    width: 150px;
+
+    cursor: pointer;
+    border: 0;
+
+    color: white;
+    font-weight: bold;
+
+    text-align: center;
+    vertical-align: middle;
+    background-color: $okayBlue;
+}
+
+    button:active
+    {
+        transform: translateY( 1px );
+    }
+
+    .add, .remove
+    {
+        width: 18px;
+        height: 18px;
+    }
+
+    .add
+    {
+        background-color: $okayBlue;
+    }
+
+    .remove
+    {
+        margin-left: 30px;
+        background-color: $badRed;
+    }
+
+header
+{
+    width: 100%;
+    height: 60px;
+    background-color: $middleGrey;
+    
+    .title
+    {
+        padding-top: 14px;
+        padding-left: 10px;
+        font-family: 'SigmarOne';
+    }
+}
+
+.container
+{
+    width: 50%;
+    height: 50%;
+    background-color: $middleGrey;
+    margin: 20px auto;
+    
+    header
+    {
+        background-color: $okayBlue;
+        height: 40px;
+        padding: $standardPadding;
+    }
+}
+
+.product-container
+{
+    padding: $standardPadding;
+    display: block;
+    clear: both;
+    height: 18px;
+
+    .product-name
+    {
+        display: inline-block;
+    }
+
+    .product-price
+    {
+        margin-left: 30px;
+        display: inline-block;
+    }
+    
+}
+    .product-container:nth-child( even )
+    {
+        background-color: $lightGrey;
+    }
+
+    .product-container:nth-child( odd )
+    {
+        background-color: $middleGrey;
+    }
