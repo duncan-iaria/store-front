@@ -512,11 +512,13 @@ function updateLink (link, options, obj) {
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jquery__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_jquery__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__css_reset_css__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__css_reset_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__css_reset_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__css_style_css__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__css_style_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__css_style_css__);
+throw new Error("Cannot find module \"test.js\"");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__css_reset_css__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__css_reset_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__css_reset_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__scss_style_scss__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__scss_style_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__scss_style_scss__);
 //get jquery the webpack way
+
 
 
 
@@ -10956,8 +10958,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!../../../node_modules/css-loader/index.js!./style.css", function() {
-			var newContent = require("!!../../../node_modules/css-loader/index.js!./style.css");
+		module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/sass-loader/lib/loader.js!./style.scss", function() {
+			var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/sass-loader/lib/loader.js!./style.scss");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -10975,7 +10977,7 @@ exports = module.exports = __webpack_require__(0)(undefined);
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ".dingus {\n  color: red; }\n", ""]);
 
 // exports
 

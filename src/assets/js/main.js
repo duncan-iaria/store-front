@@ -1,7 +1,8 @@
 //get jquery the webpack way
 import $ from 'jquery';
+import 'test';
 import '../css/reset.css';
-import '../css/style.css';
+import '../scss/style.scss';
 
 //build the request URL
 var url = 'http://localhost:3006/api/products/low';
