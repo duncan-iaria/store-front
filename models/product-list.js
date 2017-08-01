@@ -13,7 +13,7 @@ export function ProductList( tProducts, tView, tTotalView )
 
 ProductList.prototype.addProduct = function( tProduct )
 {
-    console.log( tProduct );
+    //console.log( tProduct );
     if( tProduct != null )
     {
         this.products.push( tProduct );
@@ -25,12 +25,28 @@ ProductList.prototype.addProduct = function( tProduct )
 
 ProductList.prototype.addOrderProduct = function( tProduct )
 {
-    console.log( tProduct );
+    //console.log( tProduct );
     if( tProduct != null )
     {
         this.products.push( tProduct );
     }
     
+    //force re-render
+    this.renderListAsOrderList();
+}
+
+ProductList.prototype.removeOrderProduct = function( tIndex )
+{
+    //console.log( tProduct );
+
+    if( tIndex != null )
+    {
+        this.products.splice( tIndex, 1 );
+    }
+    
+    //update total view
+    this.getOrderTotal();
+
     //force re-render
     this.renderListAsOrderList();
 }
@@ -61,7 +77,7 @@ ProductList.prototype.renderList = function()
 
 ProductList.prototype.renderListAsOrderList = function()
 {
-    if( this.view != null && this.products.length > 0 )
+    if( this.view != null )
     {
         this.view.empty();
 
@@ -82,6 +98,9 @@ ProductList.prototype.renderListAsOrderList = function()
                 );
             }
         }
+
+        //update total view
+        this.getOrderTotal();
     }
 }
 

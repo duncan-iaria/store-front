@@ -28,9 +28,9 @@ export const controller =
         $( '#products' ).on( 'click', ".product-container > .add", addProductToOrder );
     },
 
-    removeProductToOrderButton: function()
+    removeProductFromOrderButton: function()
     {
-        $( '#products' ).on( 'click', ".product-container > .remove", removeProductFromOrder );
+        $( '#orders' ).on( 'click', ".product-container > .remove", removeProductFromOrder );
     }
 }
 
@@ -128,12 +128,34 @@ function addProductToOrder( tEvent )
         controller.currentOrderList.addOrderProduct( tempProduct );
     }
 
-    controller.currentOrderList.getOrderTotal();
+    //controller.currentOrderList.getOrderTotal();
 
     console.log( controller.currentOrderList );
 }
 
 function removeProductFromOrder()
 {
+    const tempID = this.dataset.id;
+    let tempIndex = 0;
+    let tempProduct;
+
+    for( let i = controller.currentOrderList.products.length - 1; i >= 0; --i )
+    {
+        if( controller.currentOrderList.products[i].id == tempID )
+        {
+            tempIndex = i;
+            tempProduct = controller.currentOrderList.products[i];
+        }
+    }
+
+    tempProduct.quantity--;
     
+    if( tempProduct.quantity <= 0 )
+    {
+        controller.currentOrderList.removeOrderProduct( tempIndex );
+    }
+    else
+    {
+        controller.currentOrderList.renderListAsOrderList();
+    }
 }
