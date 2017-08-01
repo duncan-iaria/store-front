@@ -192,7 +192,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(6);
+var	fixUrls = __webpack_require__(7);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -512,10 +512,10 @@ function updateLink (link, options, obj) {
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jquery__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_jquery__);
-throw new Error("Cannot find module \"test.js\"");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__css_reset_css__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__test__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__css_reset_css__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__css_reset_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__css_reset_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__scss_style_scss__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__scss_style_scss__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__scss_style_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__scss_style_scss__);
 //get jquery the webpack way
 
@@ -525,6 +525,10 @@ throw new Error("Cannot find module \"test.js\"");
 
 //build the request URL
 var url = 'http://localhost:3006/api/products/low';
+
+__WEBPACK_IMPORTED_MODULE_1__test__["a" /* testMan */].testMe();
+__WEBPACK_IMPORTED_MODULE_1__test__["a" /* testMan */].testYou();
+
 
 //build request parameters
 var requestParams = { 'type': 'GET', 'url' : url, 'dataType' : 'json' };
@@ -10799,12 +10803,49 @@ return jQuery;
 
 /***/ }),
 /* 4 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+function test()
+{
+    console.log( 'importing' );
+    function testMe()
+    {
+        console.log( 'heh?' );
+    }
+}
+
+const testObj = 
+{
+    testMe: function()
+            {
+                console.log('tested baby!');
+            }
+}
+
+const testMan =
+{
+    testMe: function()
+    {
+        console.log( 'hey');
+    },
+
+    testYou: function()
+    {
+        console.log( 'you' );
+    }
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = testMan;
+
+
+/***/ }),
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(5);
+var content = __webpack_require__(6);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -10829,7 +10870,7 @@ if(false) {
 }
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)(undefined);
@@ -10843,7 +10884,7 @@ exports.push([module.i, "/* http://meyerweb.com/eric/tools/css/reset/ \r\n   v2.
 
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports) {
 
 
@@ -10938,13 +10979,13 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(8);
+var content = __webpack_require__(9);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -10969,7 +11010,7 @@ if(false) {
 }
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)(undefined);

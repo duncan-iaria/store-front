@@ -1,11 +1,15 @@
 //get jquery the webpack way
 import $ from 'jquery';
-import 'test';
+import { testMan } from './test';
 import '../css/reset.css';
 import '../scss/style.scss';
 
 //build the request URL
 var url = 'http://localhost:3006/api/products/low';
+
+testMan.testMe();
+testMan.testYou();
+
 
 //build request parameters
 var requestParams = { 'type': 'GET', 'url' : url, 'dataType' : 'json' };
