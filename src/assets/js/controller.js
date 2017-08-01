@@ -207,7 +207,7 @@ function removeProductFromInventory( tProduct, tQuantity )
     $.ajax( requestParams ).done( updateProductComplete );
 
     //remove the product from the order page
-    //controller.currentOrderList.removeOrderProduct( tProduct );
+    controller.currentOrderList.removeOrderProduct( tProduct );
 }
 
 function updateProductComplete()
