@@ -14,6 +14,7 @@ router.use( function( tRequest, tResponse, tNext )
     //enable cors
     tResponse.header( "Access-Control-Allow-Origin", "*" );
     tResponse.header( "Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept" );
+    tResponse.header( 'Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS' );
     
     //continue to the next route
     tNext();

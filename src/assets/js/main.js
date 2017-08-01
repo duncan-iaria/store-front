@@ -12,4 +12,4 @@ controller.lowProductsButton();
 controller.addProductButton();
 controller.addProductToOrderButton();
 controller.removeProductFromOrderButton();
-//controller.addPurchaseButton();
+controller.addPurchaseButton();
