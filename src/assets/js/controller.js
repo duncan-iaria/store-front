@@ -4,6 +4,9 @@ import { ProductList } from '../../../models/product-list.js';
 
 export const controller =
 {
+    productList: null,
+    currentOrderList: null,
+
     getAllProducts: function()
     {
         $( '#all-products' ).on( 'click', renderAllProducts );
@@ -18,6 +21,16 @@ export const controller =
     addProductButton: function()
     {
         $( '#add-product' ).on( 'click', addProduct );
+    },
+
+    addProductToOrderButton: function()
+    {
+        $( '#products' ).on( 'click', ".product-container > .add", addProductToOrder );
+    },
+
+    removeProductToOrderButton: function()
+    {
+        $( '#products' ).on( 'click', ".product-container > .remove", removeProductFromOrder );
     }
 }
 
@@ -51,6 +64,7 @@ function buildProductList( tData )
 {
     const tempView = $( '#products' );
     const tempProductList = new ProductList( tData, tempView );
+    controller.productList = tempProductList;
 }
 
 function addProduct()
@@ -75,4 +89,51 @@ function addProductComplete( tData )
 {
     console.log( "you added a product" );
     renderAllProducts();
+}
+
+function addProductToOrder( tEvent )
+{
+    //console.log( this.dataset.id );
+    const tempID = this.dataset.id;
+
+    //if this list doesnt exist yet - make it
+    if( controller.currentOrderList == null )
+    {
+        const tempView = $( '#orders' );
+        const tempOrderView = $( '#orderTotal' );
+        controller.currentOrderList = new ProductList( [], tempView, tempOrderView );
+    }
+
+    let tempProduct = controller.productList.products[tempID - 1];
+
+    let tempIsRepeat = false;
+
+    for( let i = controller.currentOrderList.products.length - 1; i >= 0; --i )
+    {
+        if( tempProduct.id == controller.currentOrderList.products[i].id )
+        {
+            console.log("ids are the same" );
+            controller.currentOrderList.products[i].quantity++;
+            tempIsRepeat = true;
+        }
+    }
+
+    if( tempIsRepeat )
+    {
+        controller.currentOrderList.renderListAsOrderList();
+    }
+    else
+    {
+        tempProduct.quantity = 1;
+        controller.currentOrderList.addOrderProduct( tempProduct );
+    }
+
+    controller.currentOrderList.getOrderTotal();
+
+    console.log( controller.currentOrderList );
+}
+
+function removeProductFromOrder()
+{
+    
 }
